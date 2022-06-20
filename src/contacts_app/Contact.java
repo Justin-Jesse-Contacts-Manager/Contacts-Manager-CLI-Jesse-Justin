@@ -1,6 +1,8 @@
+package contacts_app;
+
 import java.util.Scanner;
 
-public class Initialpage {
+public class Contact {
     public static void main(String[] args) {
 
         System.out.println("1. View Saved Contacts");
