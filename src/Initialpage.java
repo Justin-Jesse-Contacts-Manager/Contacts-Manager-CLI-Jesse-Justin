@@ -16,17 +16,22 @@ public class Initialpage {
         if (UserChoice == 1){
             //view contacts
             System.out.println("1 was selected");
+
         }
         if (UserChoice == 2){
+            //add contacts
             System.out.println("2 was selected");
         }
         if (UserChoice == 3){
+            //search for contacts
             System.out.println("3 was selected");
         }
         if (UserChoice == 4){
+            //delete contacts
             System.out.println("4 was selected");
         }
         if (UserChoice == 5){
+            //exit app
             System.out.println("5 was selected");
         }
 
