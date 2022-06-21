@@ -1,79 +1,84 @@
 package contacts_app;
 
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
+import java.nio.file.*;
 
 public class Contact_test {
-    public static void main(String[] args) {
+    private static final Path filepath = Path.of(System.getProperty("user.dir"));
+    private static File file;
+    private static final ArrayList<Contact> contacts = new ArrayList<>();
 
 
-        boolean StopOn = true;
+    public static void createContactsFile() throws IOException {
+        System.out.println("Welcome to our Contacts App, Please wait while the program initializes");
+        if (Files.exists(Path.of(filepath + "/contacts.txt"))) {
+            System.out.println("Contacts file Found");
+        } else {
+            Files.createFile(Path.of(filepath + "/contacts.txt"));
+            System.out.println("Contacts file Not Found, Contacts.TXT folder has been added,Program will now restart to verify changes ");
+            System.exit(0);
+        }
+        file = new File(filepath + "/contacts.txt");
+    }
+
+//    public static void FormatContacts() throws FileNotFoundException {
+//        Scanner sc = new Scanner(file);
+//        while (sc.hasNextLine()){
+//            contacts.add(new Contact(sc.next() + " "+ sc.next(), sc.nextLong()));
+//        }
+//
+//    }
+    public static void showContacts() throws IOException{
+
+        System.out.println("name | Phone #");
+        System.out.println("=-=-=-=-=-=-=-");
+        for (Contact contact: contacts) {
+            System.out.printf("%s  |  %d\n", contact.getName(), contact.getNumber());
+        }
+    }
+
+
+    public static void MenuManager() throws IOException {
+//        FormatContacts();
+        createContactsFile();
+
+        boolean Stop = true;
+        System.out.println("1. View Saved Contacts");
+        System.out.println("2. Add New Contacts");
+        System.out.println("3. Search Saved contacts by name");
+        System.out.println("4. Delete Existing Contact");
+        System.out.println("5. Exit/Close Application");
+        System.out.println("Enter an option(1, 2, 3, 4, or 5): ");
         do {
-            System.out.println("1. View Saved Contacts");
-            System.out.println("2. Add New Contacts");
-            System.out.println("3. Search Saved contacts by name");
-            System.out.println("4. Delete Existing Contact");
-            System.out.println("5. Exit/Close Application");
-            System.out.println("Enter an option(1, 2, 3, 4, or 5): ");
+
 
             Scanner sc = new Scanner(System.in);
             int UserChoice = sc.nextInt();
             switch (UserChoice) {
                 case 1:
-                    System.out.println("was 1 selected");
+                    System.out.println("1 was  selected");
+                    showContacts();
                     break;
                 case 2:
-                    System.out.println("was 2 selected");
+                    System.out.println("2 was  selected");
                     break;
                 case 3:
-                    System.out.println("was 3 selected");
+                    System.out.println("3 was  selected");
                     break;
                 case 4:
-                    System.out.println("was 4 selected");
+                    System.out.println("4 was  selected");
                     break;
                 case 5:
-                    System.out.println("was 5 selected");
-                    StopOn=false;
+                    System.out.println("5 was  selected");
+                    Stop = false;
                     break;
             }
+        } while (Stop);
+    }
 
-        } while (StopOn);
 
+    public static void main(String[] args) throws IOException {
+        MenuManager();
     }
 }
-
-
-
-//        if (UserChoice == 1){
-//            //view contacts
-//            System.out.println("1 was selected");
-//        }
-//        if (UserChoice == 2){
-//            //add contacts
-//            System.out.println("2 was selected");
-//        }
-//        if (UserChoice == 3){
-//            //search for contacts
-//            System.out.println("3 was selected");
-//        }
-//        if (UserChoice == 4){
-//            //delete contacts
-//            System.out.println("4 was selected");
-//        }
-//        if (UserChoice == 5){
-//            //exit app
-//            System.out.println("5 was selected");
-//        }
-
-
-//        public class ContactsApp{
-//            private static path filepath = path.of(System.getProperty("user.dir"));
-//            private static File file;
-//            private Static ArrayList<Contacts> contacts = new ArrayList<>();
-//
-//
-//            public static void initializedFile()  {
-
-//    }
-//}
-
-
