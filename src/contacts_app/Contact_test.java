@@ -1,9 +1,13 @@
 package contacts_app;
 
-import java.util.*;
 import java.io.*;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 
+import static java.nio.file.Files.exists;
 public class Contact_test {
     private static final Path filepath = Path.of(System.getProperty("user.dir"));
     private static File file;
@@ -22,13 +26,41 @@ public class Contact_test {
         file = new File(filepath + "/contacts.txt");
     }
 
-//    public static void FormatContacts() throws FileNotFoundException {
-//        Scanner sc = new Scanner(file);
-//        while (sc.hasNextLine()){
-//            contacts.add(new Contact(sc.next() + " "+ sc.next(), sc.nextLong()));
+    public static void formatContacts() throws FileNotFoundException {
+        Scanner sc1 = new Scanner(file);
+        while (sc1.hasNextLine()){
+            contacts.add(new Contact(sc1.next() + " "+ sc1.next(), sc1.nextLong()));
+        }
+
+    }
+//    public static void searchContact() {
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("Enter the name of your contact: ");
+//        String search = sc.nextLine();
+//        System.out.println("Matched contacts: ");
+//        for (Contact contact: contacts) {
+//            if (contact.getName().toUpperCase().contains(search.toUpperCase())) {
+//                System.out.println(contact.getName() + " | " + contact.getNumber());
+//            }
 //        }
-//
 //    }
+
+//     public static void createContactFile(){
+//         FileWriter fw = new fileWriter(file);
+//         PrintWriter pw = new PrintWriter(fw);
+//         int counter = 0;
+//         for (Contact contact: contacts) {
+//             if (counter != contacts.size() - 1) {
+//                 pw.println(contact.getName() + " " + contact.getNumber());
+//             } else {
+//                 pw.print(contact.getName() + " " + contact.getNumber());
+//             }
+//             counter++;
+//         }
+//         pw.close();
+//     }
+
+
     public static void showContacts() throws IOException{
 
         System.out.println("name | Phone #");
@@ -40,7 +72,7 @@ public class Contact_test {
 
 
     public static void MenuManager() throws IOException {
-//        FormatContacts();
+        formatContacts();
         createContactsFile();
 
         boolean Stop = true;
