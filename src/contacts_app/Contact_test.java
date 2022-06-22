@@ -1,17 +1,19 @@
 package contacts_app;
 
 import java.io.*;
-import java.nio.file.Files;
+import java.nio.file.*;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-import static java.nio.file.Files.exists;
+
 public class Contact_test {
     private static  Path filepath = Path.of(System.getProperty("user.dir"));
     private static File file;
     private static  ArrayList<Contact> contacts = new ArrayList<>();
+
+
+
+
 
 
     public static void createContactsFile() throws IOException {
@@ -33,6 +35,24 @@ public class Contact_test {
         }
 
     }
+
+    public static void addContact() throws IOException{
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please Enter the name of your new contact: ");
+        String contactName = sc.nextLine();
+        System.out.println("Please enter the Phone # of your new contact: ");
+        long contactNumber = sc.nextLong();
+        Contact newContact = new Contact(contactName, contactNumber);
+
+        FileWriter fw = new FileWriter(file, true);
+        PrintWriter pw = new PrintWriter(fw);
+        pw.println();
+        pw.print(newContact.getName()+ " " + newContact.getNumber());
+        pw.close();
+
+
+    }
+
     public static void searchContact() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the name of your contact: ");
@@ -75,7 +95,7 @@ public class Contact_test {
      }
 
 
-    public static void showContacts() throws IOException{
+    public static void showContacts() {
 
         System.out.println("name | Phone #");
         System.out.println("=-=-=-=-=-=-=-");
@@ -86,7 +106,7 @@ public class Contact_test {
 
 
     public static void MenuManager() throws IOException {
-//        formatContacts();
+        formatContacts();
         createContactsFile();
 
         boolean Stop = true;
@@ -108,7 +128,7 @@ public class Contact_test {
                     break;
                 case 2:
                     System.out.println("2 was  selected");
-
+                    addContact();
                     break;
                 case 3:
                     System.out.println("3 was  selected");
