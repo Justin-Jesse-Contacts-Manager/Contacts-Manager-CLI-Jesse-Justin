@@ -84,16 +84,31 @@ public class Contact_test {
 
      public static void deleteContact() throws IOException{
          List<String>Contacts = Files.readAllLines(Paths.get("contacts.txt"));
-
+         Scanner sc = new Scanner(System.in);
+//        ArrayList<Contact> newContacts = new ArrayList<>();
          System.out.println("Please Enter the Name you would like to delete: ");
          String search = sc.nextLine();
-         for (String Contact : contacts) {
-             if(!Contact.toUpperCase().contains(search.toUpperCase())){
-                 newContacts.add(Contact);
+         for (String Contact : Contacts) {
+             if(Contact.toUpperCase().contains(search.toUpperCase())){
+                 System.out.println("User Found");
+                 System.out.println(Contact);
+                 System.out.printf("Are you sure you would like to delete : %s\n Yes / No",Contact);
+                 String Confirm = sc.nextLine();
+                 if(Confirm.equals("Yes")){
+                        Contact = "";
+                 }
+                 if(Confirm.equals("No")){
+                     System.out.println("Canceling Current Task");
+                     break;
+                 }else {
+                     System.out.println("User canceled last Command, Closing current Loop");
+                     break;
+                 }
+             }else {
+                 System.out.println("sorry I did not recognize that Command, Closing current Loop");
+                 break;
              }
          }
-         contacts = newContacts;
-         addContactFile();
      }
 
 
